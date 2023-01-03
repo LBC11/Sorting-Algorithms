@@ -65,5 +65,37 @@ for (int i : array) {
 ```
 - - -
 
+### Insertion sort(삽입 정렬)
+1. 정렬되지 않은 index중 앞에서 두번째 선택  
+2. 선택된 index의 값보다 이전 index의 값이 작다면 값을 교환하고 이전 index을 선택한다.
+3. 선택된 index의 값이 이전 index의 값보다 크거나 index가 0일 때까지 2의 과정을 반복한다.
+4. 모든 index에서 정렬이 완료될 때까지 위의 과정 반복한다.
+
+```
+// 정렬하려는 array
+int[] array = new int[]{4,1,6,7,9,2};
+
+for(int i = 1; i < array.length; i++) {
+
+    // 선택된 index 의 값
+    int target = array[i];
+
+    // 선택된 index 의 값이 이전 index 의 값보다 크거나 index 가 0일 때
+    while( i>=1 && array[i-1]>target) {
+        array[i] = array[i-1];
+        i--;
+    }
+
+    array[i] = target;
+}
+
+// 출력값: 1 2 4 6 7 9
+for (int i : array) {
+    System.out.print(i+" ");
+}
+```
+- - -
+
+
 
 
