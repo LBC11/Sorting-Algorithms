@@ -144,5 +144,18 @@ for (int i : array) {
 ```
 - - -
 
+### Heap Sort(힙 정렬)
+1. 정렬이 완료되지 않은 부분을 max heap으로 정렬
+2. index 0의 값(최댓값)과 마지막 index의 값 교환
+3. 모든 index에서 정렬이 완료될 때까지 위의 과정 반복한다.
+
+#### max heap의 특징
+1. left child node index = parent node index * 2 + 1
+2. right child node index = parent node index * 2 + 2
+3. parnet node index = (child node index - 1) / 2
+
+#### max heap으로 정렬하기
+1. 
+
 
 
