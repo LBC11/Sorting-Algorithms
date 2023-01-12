@@ -157,5 +157,49 @@ for (int i : array) {
 #### max heap으로 정렬하기
 1. 
 
+```
+// array 를 maxHeap 으로 정렬하는 함수
+    static void maxHeap(int[] array, int parentIdx, int lastIdx) {
 
+        /*
+        만약 교환이 이뤄졌을 시 교환된 node 를 parent 로 두는
+        sub tree 도 재검사 하기 위해 while 문 사용
+
+        while 문의 조건이 leftChildIdx 를 기준으로 하는 이유는
+        오른쪽으로 할 시 왼쪽에만 child 를 가지고 있는 경우에서
+        정렬을 진행하지 않는다.
+         */
+        while((parentIdx * 2) + 1 <= lastIdx) {
+            int leftChildIdx = 2 * parentIdx + 1;
+            int rightChildIdx = 2 * parentIdx + 2;
+            int largestIdx = parentIdx;
+
+            // leftChildNode 와 parent node value 비교
+            if(lastIdx >= leftChildIdx && array[leftChildIdx] >= array[largestIdx]) {
+                largestIdx = leftChildIdx;
+            }
+
+            // rightChildNode 와 parent node value 비교
+            if(lastIdx >= rightChildIdx && array[rightChildIdx] >= array[largestIdx]) {
+                largestIdx = rightChildIdx;
+            }
+
+            // parentIdx 의 value 보다 childIdx 의 value 가 클 때
+            if(parentIdx != largestIdx) {
+
+                // value 교환
+                int temp = array[parentIdx];
+                array[parentIdx] = array[largestIdx];
+                array[largestIdx] = temp;
+
+                // parentIdx 갱신
+                // 교환된 값을 가지는 parent 의 sub tree 를 재검사
+                parentIdx = largestIdx;
+
+            }
+        }
+
+    }
+    
+```
 
