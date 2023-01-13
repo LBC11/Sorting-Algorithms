@@ -161,7 +161,7 @@ for (int i : array) {
 4. 값의 교환이 일어나지 않을 때까지 위의 과정 반복
 
 ```
-// array 를 maxHeap 으로 정렬하는 함수
+ // array 를 maxHeap 으로 정렬하는 함수
     static void maxHeap(int[] array, int parentIdx, int lastIdx) {
 
         /*
@@ -191,17 +191,55 @@ for (int i : array) {
             if(parentIdx != largestIdx) {
 
                 // value 교환
-                int temp = array[parentIdx];
-                array[parentIdx] = array[largestIdx];
-                array[largestIdx] = temp;
+                swap(array, parentIdx, largestIdx);
 
                 // parentIdx 갱신
                 // 교환된 값을 가지는 parent 의 sub tree 를 재검사
                 parentIdx = largestIdx;
-
             }
+
+            // 그렇지 않으면 반복문 종료
+            else return ;
+        }
+    }
+
+    static void heapSort(int[] array) {
+
+        int length = array.length;
+
+        // array 의 원소가 0 혹은 1개이면 정렬할 필요가 없다.
+        if(length < 2) {
+            return ;
         }
 
+        // 가장 마지막 child 의 parent index
+        int parentIdx = getParentIdx(length - 1);
+
+        // max heap 만들기
+        for(int i= parentIdx; i>=0; i--) {
+            maxHeap(array, i, length - 1);
+        }
+
+        for(int i=length-1; i>0; i--) {
+
+            // index 0 의 값과 index 마지막 값 교환
+            swap(array, 0, i);
+
+            // 다시 max heap 으로
+            maxHeap(array, 0, i-1);
+
+        }
+
+    }
+
+    static int getParentIdx(int childIdx) {
+        return (childIdx - 1) / 2;
+    }
+
+    static void swap(int[] array, int a, int b) {
+        int temp = array[a];
+        array[a] = array[b];
+        array[b] = temp;
     }
     
 ```
