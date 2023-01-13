@@ -155,7 +155,10 @@ for (int i : array) {
 3. parnet node index = (child node index - 1) / 2
 
 #### max heap으로 정렬하기
-1. 
+1. parent node의 값과 child node의 값 비교
+2. child node의 값이 크면 값 교환
+3. 교환이 일어났으면 해당 child node를 parent로 가지는 sub tree 재검사
+4. 값의 교환이 일어나지 않을 때까지 위의 과정 반복
 
 ```
 // array 를 maxHeap 으로 정렬하는 함수
