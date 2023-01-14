@@ -244,3 +244,58 @@ for (int i : array) {
     
 ```
 
+- - -
+
+### Merge sort(병합 정렬)
+1. 나누어진 sub array의 길이가 1이 될 때까지 array를 절반으로 나눈다. (divide: 분할)
+2. 인접한 sub array 끼리 정렬하여 합친다. (conqure: 정복)
+
+```
+
+// 정렬 과정에서 필요한 임시 공간
+private static int[] temp;
+
+/*
+private 와 public 을 따로 구현한 이유
+1. 내구의 구현방식을 외부에 노출시키지 않음
+2. private mergeSort 에서 temp array 를 init 하는데
+   이를 재귀로 돌리게 될 경우 문제가 발생한다.
+ */
+public static void mergeSort(int[] array) {
+
+    temp = new int[array.length];
+    mergeSort(array, 0, array.length-1);
+
+
+    temp = null;
+}
+
+private static void mergeSort(int[] array, int left, int right) {
+
+    // 원소의 개수가 0 혹은 1개면 정렬할 필요가 없다.
+    if(left < right) return;
+
+    int mid  = (left+right)/2;
+
+    mergeSort(array, left, mid);
+    mergeSort(array, mid+1, right);
+
+    merge(array, left, mid, right);
+}
+
+private static void merge(int[] array, int left, int mid, int right) {
+
+
+    int l = left; // left sub array 시작점
+    int r = mid +1; // right sub array 시작점
+    int idx = left; //
+
+    while(l <= mid && r <= right) {
+
+    }
+
+}
+    
+```    
+
+### Quick Sort(
