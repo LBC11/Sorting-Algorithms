@@ -288,14 +288,57 @@ private static void merge(int[] array, int left, int mid, int right) {
 
     int l = left; // left sub array 시작점
     int r = mid +1; // right sub array 시작점
-    int idx = left; //
+    int idx = left; // temp 의 index
 
     while(l <= mid && r <= right) {
 
+        // 각 sub array 의 value 를 비교한 후 더 작은 값을
+        // 가진 value 가 temp array 에 들어간다.
+
+        // left array 값이 더 클 경우
+        if(array[l] >= array[r]) {
+            temp[idx] = array[r];
+            idx++;
+            r++;
+        }
+
+        // right array 값이 더 클 경우
+        else{
+            temp[idx] = array[l];
+            idx++;
+            l++;
+        }
+    }
+
+    // left 가 먼저 옮겨진 경우
+    // right 에서 나머지 부분을 옮겨 적는다.
+    if(l > mid) {
+        while(r <= right) {
+            temp[idx] = array[r];
+            idx++;
+            r++;
+        }
+    }
+
+    // right 가 먼저 옮겨진 경우
+    // left 에서 나머지 부분을 옮겨 적는다.
+    else {
+        while(l <= mid) {
+            temp[idx] = array[l];
+            idx++;
+            l++;
+        }
+    }
+
+    // 정렬된 부분을 다시 array 로 옮겨 담는다.
+    for(int i=left; i<=right; i++) {
+        array[i] = temp[i];
     }
 
 }
     
 ```    
 
-### Quick Sort(
+### Quick Sort(퀵 정렬)
+
+
