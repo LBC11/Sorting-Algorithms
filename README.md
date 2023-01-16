@@ -1,4 +1,4 @@
-# Sorting-Algorithms
+# Pairwise comparison sorting
 
 ### Bubble Sort(거품 정렬)
 1. 정렬되지 않은 index중 맨 앞 선택
@@ -246,6 +246,8 @@ for (int i : array) {
 
 - - -
 
+# Dividied and Conquer sorting
+
 ### Merge sort(병합 정렬)
 1. 나누어진 sub array의 길이가 1이 될 때까지 array를 절반으로 나눈다. (divide: 분할)
 2. 인접한 sub array 끼리 정렬하여 합친다. (conqure: 정복)
@@ -342,3 +344,6 @@ private static void merge(int[] array, int left, int mid, int right) {
 ### Quick Sort(퀵 정렬)
 
 
+# Distributed sorting
+
+# Hybrid sorting
