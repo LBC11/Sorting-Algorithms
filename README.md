@@ -265,9 +265,15 @@ private 와 public 을 따로 구현한 이유
  */
 public static void mergeSort(int[] array) {
 
+    // 임시 공간 init
     temp = new int[array.length];
+
+    // merge sort 실행
     mergeSort(array, 0, array.length-1);
 
+    // 불필요해진 memory 해제
+    // temp 를 static 으로 선언 해놓았기에 GC가 자동으로
+    // 해제해주기 어려워 null 을 대입하는 방식 사용
     temp = null;
 }
 
@@ -276,6 +282,7 @@ private static void mergeSort(int[] array, int left, int right) {
     // 원소의 개수가 0 혹은 1개면 정렬할 필요가 없다.
     if(left < right) return;
 
+    // 중간 지점
     int mid  = (left+right)/2;
 
     mergeSort(array, left, mid);
@@ -340,8 +347,22 @@ private static void merge(int[] array, int left, int mid, int right) {
 ```    
 
 ### Quick Sort(퀵 정렬)
-
+1. array에서 중간 숫자를 pivot으로 선택한다.
+2. pivot을 기준으로 왼쪽에서 pivot 보다 작은 수를 오른쪽에서 pivot보다 큰 수를 찾는다.
+3. 양 방향에서 찾은 두 수를 교환한다.
+4. 양 방향의 탐색 위치가 엇갈리지 않을 때까지 2~3 과정을 반복한다.
+5. 엇갈린 지점을 기준으로 두개의 sub array로 나누고 각각의 array에서 위의 과정을 반복 (Divide: 분할)
+6. 나누어진 sub array의 길이가 1이 될 때까지 위의 과정 반복
+7. 인접한 sub array끼리 합친다. (Conquar: 정복) 
 
 # Distributed sorting
 
+### Bucket sort
+
+### Counting sort
+
+### Radix sort
+
 # Hybrid sorting
+
+### Tim sort
