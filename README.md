@@ -268,7 +268,6 @@ public static void mergeSort(int[] array) {
     temp = new int[array.length];
     mergeSort(array, 0, array.length-1);
 
-
     temp = null;
 }
 
@@ -286,7 +285,6 @@ private static void mergeSort(int[] array, int left, int right) {
 }
 
 private static void merge(int[] array, int left, int mid, int right) {
-
 
     int l = left; // left sub array 시작점
     int r = mid +1; // right sub array 시작점
