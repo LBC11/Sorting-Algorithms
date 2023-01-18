@@ -279,8 +279,8 @@ public static void mergeSort(int[] array) {
 
 private static void mergeSort(int[] array, int left, int right) {
 
-    // 원소의 개수가 0 혹은 1개면 정렬할 필요가 없다.
-    if(left < right) return;
+    // 범위 내의 원소의 개수가 0 혹은 1개면 정렬할 필요가 없다.
+    if(left >= right) return;
 
     // 중간 지점
     int mid  = (left+right)/2;
