@@ -376,7 +376,7 @@ static void quickSort_middle(int[] array, int left, int right) {
 
     }
 
-    private static int divide(int[] array, int left, int right) {
+private static int divide(int[] array, int left, int right) {
 
     int l = left; // 왼쪽 방향의 시작 지점
     int r = right; // 오른쪽 방향의 시작 지점
@@ -407,14 +407,13 @@ static void quickSort_middle(int[] array, int left, int right) {
         // 두 위치의 value 를 교환한다.
         swap(array, l, r);
     }
+}
 
-    }
-
-    static void swap(int[] array, int a, int b) {
+static void swap(int[] array, int a, int b) {
     int temp = array[a];
     array[a] = array[b];
     array[b] = temp;
-    }
+}
     
 ```  
 
