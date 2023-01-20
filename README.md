@@ -422,7 +422,9 @@ static void swap(int[] array, int a, int b) {
 # Distributed sorting
 
 ### Bucket sort
+정렬하고자 하는 수가 너무 많으면 RAM 과 disk 사이를 
 
+1. 
 ### Counting sort
 
 ### Radix sort
