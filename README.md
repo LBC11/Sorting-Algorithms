@@ -421,13 +421,27 @@ static void swap(int[] array, int a, int b) {
 
 # Distributed sorting
 
+### Counting sort
+1. 정렬하고자 하는 수의 최댓값을 구한다.
+2. 최댓값 만큼의 크기를 가지는 array A를 준비한다. (array[max+1])
+3. A에 각 index 크기 만큼의 value를 가지는 원소의 개수를 구한다. (counting array)
+4. 3에서 구한 counting array의 각 value를 누적합으로 변환한다.
+5. counting array에서 각 (value - 1)은 정렬 되었을 때 해당 index의 시작 위치를 알려준다.
+(ex. A[5] = 9 -> 정렬된 array에서 index 8의 value는 5이다.)
+
 ### Bucket sort
 정렬하고자 하는 수가 너무 많으면 RAM 과 disk 사이를 
 
-1. 
-### Counting sort
+1. 컴퓨터의 성능을 고려하여 한번에 정렬하고자 하는 수의 비율을 정합니다.
+2. 비율에 따른 bucket n개를 준비합니다. (ex. 비율이 10% 이면 n=10)
+3. 원소의 크기에 따라 해당하는 bucket에 집어넣습니다. (ex. 98% 의 크기를 가진 원소는 10번째 bucket에)
+4. 각 bucket에서 quick sort를 실행합니다.
 
 ### Radix sort
+1. 0 ~ 9까지 각 자리의 숫자를 담당할 bucket 10개를 준비합니다.
+2. 데이터 중 가장 큰 숫자의 자릿수를 구합니다.
+3. 가장 작은 자릿수부터 해당 자릿수만을 보고 counting sort를 진행합니다.
+4. 위 3의 과정을 모든 자릿수에서 반복합니다.
 
 # Hybrid sorting
 
