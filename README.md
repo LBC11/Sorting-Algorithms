@@ -429,8 +429,10 @@ static void swap(int[] array, int a, int b) {
 5. counting array에서 각 (value - 1)은 정렬 되었을 때 해당 index의 시작 위치를 알려준다.
 (ex. A[5] = 9 -> 정렬된 array에서 index 8의 value는 5이다.)
 
+``` 
+
 static int[] counting;
-    static int[] sorted;
+static int[] sorted;
 
 public static void countingSort(int[] array) {
 
@@ -447,8 +449,6 @@ public static void countingSort(int[] array) {
     counting = null;
 
 }
-
-``` 
 
 private static void countingSort(int[] array, int length) {
 
