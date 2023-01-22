@@ -429,6 +429,62 @@ static void swap(int[] array, int a, int b) {
 5. counting array에서 각 (value - 1)은 정렬 되었을 때 해당 index의 시작 위치를 알려준다.
 (ex. A[5] = 9 -> 정렬된 array에서 index 8의 value는 5이다.)
 
+static int[] counting;
+    static int[] sorted;
+
+public static void countingSort(int[] array) {
+
+    // max value 구하기
+    int max = Arrays.stream(array).max().orElse(0);
+
+    // counting array init
+    counting = new int[max + 1];
+
+    // counting sort 시작
+    countingSort(array, array.length);
+
+    // 메모리 할당 해제
+    counting = null;
+
+}
+
+``` 
+
+private static void countingSort(int[] array, int length) {
+
+    // sorted array init
+    sorted = new int[length];
+
+    // 과정 3의 counting array 채우기
+    for (int i : array) {
+        counting[i]++;
+    }
+
+    // 과정 4의 counting array 누적합으로 변환
+    for (int i = 1; i < counting.length; i++) {
+        counting[i] += counting[i - 1];
+    }
+
+    // 과정 5의 counting array 를 이용한 정렬 시작
+    for (int i : array) {
+        counting[i]--;
+        int value = counting[i];
+        sorted[value] = i;
+    }
+
+    // array 로 정렬된 결과 옮기기
+    for (int i = 0; i < array.length; i++) {
+        array[i] = sorted[i];
+    }
+
+    // 메모리 할당 해제
+    sorted = null;
+}
+
+``` 
+
+- - -
+    
 ### Bucket sort
 정렬하고자 하는 수가 너무 많으면 RAM 과 disk 사이를 
 
