@@ -486,8 +486,6 @@ private static void countingSort(int[] array, int length) {
 - - -
     
 ### Bucket sort
-정렬하고자 하는 수가 너무 많으면 RAM 과 disk 사이를 
-
 1. 컴퓨터의 성능을 고려하여 한번에 정렬하고자 하는 수의 비율을 정합니다.
 2. 비율에 따른 bucket n개를 준비합니다. (ex. 비율이 10% 이면 n=10)
 3. 원소의 크기에 따라 해당하는 bucket에 집어넣습니다. (ex. 98% 의 크기를 가진 원소는 10번째 bucket에)
