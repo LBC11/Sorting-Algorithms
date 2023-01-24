@@ -491,6 +491,67 @@ private static void countingSort(int[] array, int length) {
 3. 원소의 크기에 따라 해당하는 bucket에 집어넣습니다. (ex. 98% 의 크기를 가진 원소는 10번째 bucket에)
 4. 각 bucket에서 quick sort를 실행합니다.
 
+``` 
+
+/*
+숫자의 범위 0 ~ 99
+bucket 은 하나당 10 %씩, 총 10개의 bucket 을
+수의 개수는 150개이고 균일한 분포를 가졌다고 가정
+ */
+ 
+// 정렬에 사용할 bucket 
+static int[][] buckets;
+
+public static void bucketSort(int[] array) {
+
+    // buckets init
+    buckets = new int[10][15];
+
+    // counting sort 시작
+    bucketSort(array, array.length);
+
+    // 메모리 할당 해제
+    buckets = null;
+
+}
+
+private static void bucketSort(int[] array, int length) {
+
+    // bucket 에 나누어 담는 과정
+    for (int i : array) {
+
+        // n번째 bucket 에 저장
+        int n = i/10;
+
+        // 마지막 index 의 value 는 몇번째까지
+        // 값이 저장되었는지 알려주는 pointer 로 사용
+        // 마지막까지 배열을 채우게 되면 자연스럽게
+        // pointer 정보도 삭제됨
+        int pointer = buckets[n][15]++;
+        buckets[n][pointer] = i;
+    }
+
+    for (int[] bucket : buckets) {
+
+        // 각 bucket 에서 퀵 정렬 실행
+        // quickSort code 는 위에 있어 생략
+        quickSort_middle(bucket, 0, bucket.length - 1);
+    }
+
+    // array 의 pointer
+    int i = 0;
+
+    // array 로 정렬된 결과 옮기기 
+    for(int[] bucket : buckets) {
+        for (int num : bucket) {
+            array[i++] = num;
+        }
+    }
+}
+
+``` 
+- - -
+
 ### Radix sort
 1. 0 ~ 9까지 각 자리의 숫자를 담당할 bucket 10개를 준비합니다.
 2. 데이터 중 가장 큰 숫자의 자릿수를 구합니다.
