@@ -436,9 +436,6 @@ static int[] sorted;
 
 public static void countingSort(int[] array) {
 
-    // max value 구하기
-    int max = Arrays.stream(array).max().orElse(0);
-
     // counting array init
     counting = new int[max + 1];
 
@@ -466,10 +463,11 @@ private static void countingSort(int[] array, int length) {
     }
 
     // 과정 5의 counting array 를 이용한 정렬 시작
-    for (int i : array) {
-        counting[i]--;
-        int value = counting[i];
-        sorted[value] = i;
+    // 누적합을 이용하는 방식이기에 정렬된 부분은 역순으로 값이 저장된다.
+    // 이러한 이슈를 해결하기 위해 index 마지막부터 시작했다.
+    for (int i = length-1; i>=0; i--) {
+        int value = --counting[array[i]];
+        sorted[value] = array[i];
     }
 
     // array 로 정렬된 결과 옮기기
@@ -553,11 +551,76 @@ private static void bucketSort(int[] array, int length) {
 - - -
 
 ### Radix sort
-1. 0 ~ 9까지 각 자리의 숫자를 담당할 bucket 10개를 준비합니다.
-2. 데이터 중 가장 큰 숫자의 자릿수를 구합니다.
-3. 가장 작은 자릿수부터 해당 자릿수만을 보고 counting sort를 진행합니다.
-4. 위 3의 과정을 모든 자릿수에서 반복합니다.
+1. 데이터 중 가장 큰 숫자의 자릿수를 구합니다.
+2. 가장 작은 자릿수부터 해당 자릿수만을 보고 counting sort를 진행합니다.
+3. 위 3의 과정을 모든 자릿수에서 반복합니다.
 
-# Hybrid sorting
+``` 
 
-### Tim sort
+static int[] counting;
+static int[] sorted;
+
+public static void RadixSort(int[] array) {
+
+    // 원소의 개수가 0 혹은 1개이면 정렬할 필요가 없다.
+    if (array.length < 2) return;
+
+    int length = array.length;
+
+    // max value length 구하기
+    int max = Arrays.stream(array).max().orElse(0);
+
+    // radix sort 시작
+    RadixSort(array, length, max);
+}
+
+private static void RadixSort(int[] array, int length, int max) {
+
+    // 각 자릿수에서 counting sort 실행
+    for (int i = 1; i < max; i *= 10) {
+        countingSort(array, length, i);
+    }
+}
+
+private static void countingSort(int[] array, int length, int exp) {
+
+    // memory 할당
+    counting = new int[10];
+    sorted = new int[length];
+
+    // 과정 3의 counting array 채우기
+    for (int i : array) {
+
+        // num 에서 해당 자릿수만 추출
+        int idx = (i / exp) % 10;
+        counting[idx]++;
+    }
+
+    // 과정 4의 counting array 누적합으로 변환
+    for (int i = 1; i < counting.length; i++) {
+        counting[i] += counting[i - 1];
+    }
+
+    // 과정 5의 counting array 를 이용한 정렬 시작
+    // 누적합을 이용하는 방식이기에 정렬된 부분은 역순으로 값이 저장된다.
+    // 이러한 이슈를 해결하기 위해 index 마지막부터 시작했다.
+    for (int i = length - 1; i >= 0; i--) {
+
+        // num 의 해당 자릿수
+        int idx = (array[i] / exp) % 10;
+
+        int value = --counting[idx];
+        sorted[value] = array[i];
+    }
+
+    // array 로 정렬된 결과 옮기기
+    for (int i = 0; i < length; i++) {
+        array[i] = sorted[i];
+    }
+
+    // memory 해제
+    counting = null;
+    sorted = null;
+}
+
+``` 
