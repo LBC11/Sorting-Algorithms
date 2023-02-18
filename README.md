@@ -150,9 +150,9 @@ for (int i : array) {
 3. 모든 index에서 정렬이 완료될 때까지 위의 과정 반복한다.
 
 #### max heap의 특징
-1. left child node index = parent node index * 2 + 1
-2. right child node index = parent node index * 2 + 2
-3. parnet node index = (child node index - 1) / 2
+1. left child node index = parent node index * 2
+2. right child node index = parent node index * 2 + 1
+3. parnet node index = (child node index) / 2
 
 #### max heap으로 정렬하기
 1. parent node의 값과 child node의 값 비교
@@ -172,9 +172,9 @@ for (int i : array) {
         오른쪽으로 할 시 왼쪽에만 child 를 가지고 있는 경우에서
         정렬을 진행하지 않는다.
          */
-        while((parentIdx * 2) + 1 <= lastIdx) {
-            int leftChildIdx = 2 * parentIdx + 1;
-            int rightChildIdx = 2 * parentIdx + 2;
+        while(parentIdx * 2 <= lastIdx) {
+            int leftChildIdx = 2 * parentIdx;
+            int rightChildIdx = 2 * parentIdx + 1;
             int largestIdx = parentIdx;
 
             // leftChildNode 와 parent node value 비교
