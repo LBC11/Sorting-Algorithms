@@ -366,7 +366,7 @@ static void quickSort_middle(int[] array, int left, int right) {
     // array 를 나누는 기준
     // merge sort 는 mid 가 기준이 되었다면
     // quick sort 는 양방향에서 엇갈리는 지점이 기준이 된다.
-    // 물론 중간 지점을 처음 이 code 에서 처음의 pivot 으로 지정하기는 한다.
+    // 물론 중간 지점을 이 code 에서 처음의 pivot 으로 지정하기는 한다.
     // 이 외에도 가장 왼쪽을 기준으로 하는 방법, 오른쪽을 기준으로 하는 방법이 있다.
     // 중간지점을 선택하는 방식이 성능면에서 우수하여 이를 선택했다.
     int pivot = divide(array, left, right);
@@ -385,7 +385,7 @@ private static int divide(int[] array, int left, int right) {
     // 양 방향의 pointer 가 엇갈릴 떄까지 계속한다.
     while (true) {
 
-        // 이 방식은 역수능로 정렬된다.
+        // 이 방식은 역순으로 정렬된다.
         // pivot 보다 작거나 같은 원소를 찾는다.
         while (array[l] > pivot) {
             l++;
